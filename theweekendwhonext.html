@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>After Hours Til Dawn Tour</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #0f0f0f;
+      color: #f5f5f5;
+    }
+
+    header {
+      padding: 30px 20px;
+      text-align: center;
+      border-bottom: 1px solid #333;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 28px;
+      letter-spacing: 2px;
+    }
+
+    header p {
+      margin-top: 10px;
+      color: #bbb;
+    }
+
+    .container {
+      padding: 20px;
+      max-width: 600px;
+      margin: auto;
+    }
+
+    .card {
+      background: #1c1c1c;
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+
+    .card h2 {
+      margin-top: 0;
+      font-size: 20px;
+      border-bottom: 1px solid #333;
+      padding-bottom: 10px;
+    }
+
+    .price {
+      font-weight: bold;
+      color: #ff9f43;
+    }
+
+    input, select, button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 10px;
+      border-radius: 6px;
+      border: none;
+      font-size: 16px;
+    }
+
+    input, select {
+      background: #2a2a2a;
+      color: #fff;
+    }
+
+    button {
+      background: #ff9f43;
+      color: #000;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #ffa94d;
+    }
+
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>AFTER HOURS TIL DAWN TOUR</h1>
+    <p>The Weeknd • Live</p>
+  </header>
+
+  <div class="container">
+
+    <div class="card" id="registerPage">
+      <h2>Register</h2>
+
+      <input type="text" id="name" placeholder="Full Name" required />
+      <input type="email" id="email" placeholder="Email Address" required />
+
+      <select id="type">
+        <option value="Student">Student (₹350)</option>
+        <option value="Adult">Adult (₹500)</option>
+      </select>
+
+      <input type="number" id="tickets" placeholder="Number of Tickets" required />
+
+      <button type="button" onclick="register()">Register</button>
+    </div>
+
+    <div class="card hidden" id="confirmationPage">
+      <h2>Booking Confirmed</h2>
+
+      <p><strong>Name:</strong> <span id="cName"></span></p>
+      <p><strong>Ticket Type:</strong> <span id="cType"></span></p>
+      <p><strong>Tickets Booked:</strong> <span id="cTickets"></span></p>
+      <p><strong>Total Price:</strong> ₹<span id="cTotal"></span></p>
+
+      <p><strong>Date:</strong> Saturday, 7th February</p>
+      <p><strong>Time:</strong> 6:00 PM – 10:00 PM</p>
+      <p><strong>Venue:</strong> CP Goenka International School</p>
+
+      <p class="price">Show this confirmation at entry</p>
+    </div>
+
+  </div>
+
+  <script>
+    function register() {
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const tickets = document.getElementById('tickets').value;
+      const type = document.getElementById('type').value;
+
+      if (!name || !email || !tickets) {
+        alert("Please fill all details");
+        return;
+      }
+
+      const price = type === "Student" ? 350 : 500;
+      const total = tickets * price;
+
+      document.getElementById('cName').innerText = name;
+      document.getElementById('cType').innerText = type;
+      document.getElementById('cTickets').innerText = tickets;
+      document.getElementById('cTotal').innerText = total;
+
+      document.getElementById('registerPage').classList.add('hidden');
+      document.getElementById('confirmationPage').classList.remove('hidden');
+    }
+  </script>
+
+</body>
+</html>
